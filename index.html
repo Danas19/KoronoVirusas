@@ -8,6 +8,9 @@
 <body>
  <h1>Korono viruso atvejai</h1>
 
+ <h3 id="lithuania"></h3>
+
+
 <table id="table">
 <tr>
 	<th>Šalis</th>
@@ -83,6 +86,8 @@ xhr.addEventListener("readystatechange", function () {
 				trNew.style.color = 'red';
 				trNew.style.border = '3px solid blue';
 				tdNew.textContent += '/Lietuva';
+				document.getElementById('lithuania').textContent = 'Lietuvoje iš viso atvejų: ' + responseLine.cases.total + '. Iš viso mirčių: '
+					+ responseLine.deaths.total + '. Iš viso atsigavo: ' + responseLine.cases.recovered;
 			}
 
 			tableTag.appendChild(trNew);
@@ -113,5 +118,9 @@ tr:hover {
 	background-color: black;
 	color: white;
 	cursor: pointer;
+}
+
+th {
+	width: 25%;
 }
 </style>
