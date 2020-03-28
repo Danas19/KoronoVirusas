@@ -86,8 +86,8 @@ xhr.addEventListener("readystatechange", function () {
 				trNew.style.color = 'red';
 				trNew.style.border = '3px solid blue';
 				tdNew.textContent += '/Lietuva';
-				document.getElementById('lithuania').textContent = 'Lietuvoje iš viso atvejų: ' + responseLine.cases.total + '. Iš viso mirčių: '
-					+ responseLine.deaths.total + '. Iš viso atsigavo: ' + responseLine.cases.recovered;
+				document.getElementById('lithuania').textContent = 'Lietuvoje iš viso atvejų: ' + responseLine.cases.total + '. Šiuo metu serga: '
+				+ responseLine.cases.active + '. Iš viso mirčių: ' + responseLine.deaths.total + '. Iš viso atsigavo: ' + responseLine.cases.recovered + '.';
 			}
 
 			tableTag.appendChild(trNew);
