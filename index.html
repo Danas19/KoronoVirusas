@@ -1,0 +1,105 @@
+<h1>Korono viruso atvejai</h1>
+
+<table id="table">
+<tr>
+	<th>Šalis</th>
+	<th>Iš viso atvejų</th>
+	<th>Iš viso mirčių</th>
+	<th>Atsigavo</th>
+</tr>
+</table>
+
+<script>
+var data = null;
+var tableTag = document.getElementById('table');
+
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+xhr.addEventListener("readystatechange", function () {
+	if (this.readyState === this.DONE) {
+		console.log(JSON.parse(this.responseText));
+		console.log(JSON.parse(this.responseText).response[0].cases.total);
+	}
+});
+
+xhr.open("GET", "https://covid-193.p.rapidapi.com/statistics?country=lithuania");
+xhr.setRequestHeader("x-rapidapi-host", "covid-193.p.rapidapi.com");
+xhr.setRequestHeader("x-rapidapi-key", "116908dfb6msh3f97dbaf0aa4af8p1fcef7jsn502b466da50c");
+
+xhr.send(data);
+
+
+
+var data = null;
+
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+	if (this.readyState === this.DONE) {
+		let responseNormal = JSON.parse(this.responseText).response;
+		responseNormal.sort((r1, r2) => r2.cases.total - r1.cases.total);
+		console.log(responseNormal);
+
+		for (let i = 0; i < responseNormal.length; i++) {
+			let responseLine = responseNormal[i];
+
+			let trNew = document.createElement('tr');
+
+			let tdNew = document.createElement('td');
+			let tdNew2 = document.createElement('td');
+			let tdDeathsTotal = document.createElement('td');
+			let tdRecovered = document.createElement('td');
+
+			tdNew.textContent = responseLine.country;
+
+			if (tdNew.textContent == 'All') {
+				tdNew.textContent = 'Visos Šalys';
+				trNew.style.color = 'red';
+			}
+
+			tdNew2.textContent = responseLine.cases.total;
+			tdDeathsTotal.textContent = responseLine.deaths.total;
+			tdRecovered.textContent = responseLine.cases.recovered;
+
+			trNew.appendChild(tdNew);
+			trNew.appendChild(tdNew2);
+			trNew.appendChild(tdDeathsTotal);
+			trNew.appendChild(tdRecovered);
+
+			if (responseLine.country == 'Lithuania') {
+				trNew.style.color = 'red';
+				trNew.style.border = '3px solid blue';
+				tdNew.textContent += '/Lietuva';
+			}
+
+			tableTag.appendChild(trNew);
+		}
+	}
+});
+
+xhr.open("GET", "https://covid-193.p.rapidapi.com/statistics");
+xhr.setRequestHeader("x-rapidapi-host", "covid-193.p.rapidapi.com");
+xhr.setRequestHeader("x-rapidapi-key", "116908dfb6msh3f97dbaf0aa4af8p1fcef7jsn502b466da50c");
+
+xhr.send(data);
+</script>
+
+<style>
+table, td, th {
+	border: 3px solid black;
+	font-size: 1.2em;
+	font-weight: 600;
+	border-collapse: collapse;
+}
+
+td, th {
+	padding: 4px;
+}
+
+tr:hover {
+	background-color: black;
+	color: white;
+	cursor: pointer;
+}
+</style>
