@@ -94,6 +94,8 @@ xhr.addEventListener("readystatechange", function () {
 
 			tableTag.appendChild(trNew);
 		}
+		document.getElementById('filter-countries').style.display = 'block';
+
 	}
 });
 
@@ -154,6 +156,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #filter-countries {
 	width: 20%;
+	display: none;
 }
 
 ::placeholder {
