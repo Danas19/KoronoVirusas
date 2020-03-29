@@ -10,7 +10,7 @@
 
  <h3 id="lithuania"></h3>
 
-
+ <input id="filter-countries" placeholder="Čia galite įvesti šalį(Angliškai)"></input>
 <table id="table">
 <tr>
 	<th>Šalis</th>
@@ -26,6 +26,7 @@
 </html>
 
 <script>
+
 var data = null;
 var tableTag = document.getElementById('table');
 
@@ -101,11 +102,29 @@ xhr.setRequestHeader("x-rapidapi-host", "covid-193.p.rapidapi.com");
 xhr.setRequestHeader("x-rapidapi-key", "116908dfb6msh3f97dbaf0aa4af8p1fcef7jsn502b466da50c");
 
 xhr.send(data);
+
+let filterCountriesInput = document.getElementById('filter-countries');
+filterCountriesInput.addEventListener('input', function() {
+	let tableLines = tableTag.childNodes;
+	let textInputed = filterCountriesInput.value;
+	filterCountriesInput.value = textInputed.toUpperCase();
+
+	//i start 3, nes pirma kazkas ten, vėliau stulpelių pavadinimai, vėliau visos šalys ir tik tada šalys po vieną
+	for (let i = 3; i < tableLines.length; i++) {
+		let countryName = tableLines[i].firstElementChild.innerText;
+			
+		if (textInputed == '' || countryName.toLowerCase().includes(textInputed.toLowerCase())) {
+			tableLines[i].style.display = 'table-row';
+		} else {
+			tableLines[i].style.display = 'none';
+		}
+	}
+});
 </script>
 
 <style>
 table, td, th {
-	border: 3px solid black;
+	border: 3px solid grey;
 	font-size: 1.2em;
 	font-weight: 600;
 	border-collapse: collapse;
@@ -125,7 +144,19 @@ th {
 	width: 25%;
 }
 
+table {
+	width: 100%;
+}
+
 h1, h2, h3, h4, h5, h6 {
 	text-align: center;
+}
+
+#filter-countries {
+	width: 20%;
+}
+
+::placeholder {
+	font-size: 1.3em;
 }
 </style>
