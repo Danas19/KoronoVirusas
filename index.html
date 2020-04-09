@@ -109,7 +109,7 @@ xhr.addEventListener("readystatechange", function () {
 			if (responseLine.country == 'Lithuania') {
 				trNew.style.color = 'red';
 				trNew.style.border = '3px solid blue';
-				document.getElementById('lithuania').textContent = 'Lietuvoje iš viso atvejų: ' + responseLine.cases.total + '. Šiuo metu serga: '
+     document.getElementById('lithuania').innerHTML = 'Lietuvoje iš viso atvejų: <span style="color:red; font-size: 1.2em;">' + responseLine.cases.total + '</span>. Šiuo metu serga: '
 				+ responseLine.cases.active + '. Iš viso mirčių: ' + responseLine.deaths.total + '. Iš viso pasveiko: ' + responseLine.cases.recovered + '.';
 			}
 
