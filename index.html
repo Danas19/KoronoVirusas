@@ -109,8 +109,8 @@ xhr.addEventListener("readystatechange", function () {
 			if (responseLine.country == 'Lithuania') {
 				trNew.style.color = 'red';
 				trNew.style.border = '3px solid blue';
-     				document.getElementById('lithuania').innerHTML = 'Lietuvoje iš viso atvejų: <span style="text-shadow: 0px 1px, 1px 0px, 1px 1px; font-size: 1.2em;">' + responseLine.cases.total + '</span>. Šiuo metu serga: '
-				+ responseLine.cases.active + '. Iš viso mirčių: ' + responseLine.deaths.total + '. Iš viso pasveiko: ' + responseLine.cases.recovered + '.';
+				document.getElementById('lithuania').innerHTML = 'Lietuvoje iš viso atvejų: <span style="text-shadow: 0px 1px, 1px 0px, 1px 1px; font-size: 1.2em;">' + responseLine.cases.total + '</span>.<br>Šiuo metu serga: '
+					+ responseLine.cases.active + '.<br>Iš viso mirčių: ' + responseLine.deaths.total + '.<br>Iš viso pasveiko: ' + responseLine.cases.recovered + '.';
 			}
 
 			tableTag.appendChild(trNew);
