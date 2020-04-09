@@ -57,6 +57,10 @@ xhr.addEventListener("readystatechange", function () {
 
 		for (let i = 0; i < responseNormal.length; i++) {
 			let responseLine = responseNormal[i];
+       			if (responseLine.country.startsWith('-')) {
+       				//čia liktais žemynai prasideda -
+       				continue;
+       			}
 
 			let trNew = document.createElement('tr');
 
@@ -81,11 +85,12 @@ xhr.addEventListener("readystatechange", function () {
 			trNew.appendChild(tdRecovered);
 
 			//addding lithuanian translation start
-			let minIndex = -1;
-			let maxIndex = countries.length;
+			let minIndex = 0;
+			let maxIndex = countries.length - 1;
 
 			while (true) {
 				let middleIndex = parseInt((minIndex + maxIndex) / 2);
+       				console.log(middleIndex);
        				if (countries[middleIndex].english == responseLine.country) {
 					tdNew.textContent += '/' + countries[middleIndex].lithuanian;
 					break;
