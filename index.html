@@ -162,14 +162,18 @@ xhr2.addEventListener("readystatechange", function () {
 		let historyLithuanianTag = document.getElementById('history-lithuanian');
 
                 for (let i = 0; i < historyLithuanian.length; i++) {
-     			if (i != 0 && historyLithuanian[i].day == historyLithuanian[i - 1].day) {
-				continue;
-     			}
+     			//if (i != 0 && historyLithuanian[i].day == historyLithuanian[i - 1].day) {
+			//	continue;
+     			//}
 			let currentLine = historyLithuanian[i];
-                        historyLithuanianTag.textContent = historyLithuanianTag.textContent + 'data: ' + currentLine.day + '. Iš viso atvejų: ' + currentLine.cases.total + '\n';
+                        historyLithuanianTag.textContent = historyLithuanianTag.textContent + 'data ir laikas: ' + changeCurrentLineTimeString(currentLine.time) + '. Iš viso atvejų: ' + currentLine.cases.total + '\n';
                 }
         }
 });
+
+function changeCurrentLineTimeString(t) {
+	return t.replace('T', ' ').replace('+00:00', '');
+}
 
 xhr2.open("GET", "https://covid-193.p.rapidapi.com/history?country=lithuania");
 xhr2.setRequestHeader("x-rapidapi-host", "covid-193.p.rapidapi.com");
