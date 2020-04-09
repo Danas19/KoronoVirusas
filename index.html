@@ -49,7 +49,7 @@ xhr.addEventListener("readystatechange", function () {
 		console.log(JSON.parse(this.responseText).response.filter(r => r.cases.total > 100000));
 		let responseNormal = JSON.parse(this.responseText).response;
 		responseNormal.sort((r1, r2) => r2.cases.total - r1.cases.total);
-		responseNormal.shift();
+		//responseNormal.shift();
 
 		//delete from
 		//for (let i = 0; i < responseNormal.length; i++) {
