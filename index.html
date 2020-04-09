@@ -26,6 +26,9 @@ korono virusas, pandemija, 2020, Danas Mikelionis">
 </tr>
 </table>
 
+<pre id="history-lithuanian">           Istorija(Lietuva)
+</pre>
+
 <p>Naudojausi: https://rapidapi.com/api-sports/api/covid-193.</p>
 </body>
 
@@ -90,8 +93,7 @@ xhr.addEventListener("readystatechange", function () {
 
 			while (true) {
 				let middleIndex = parseInt((minIndex + maxIndex) / 2);
-       				console.log(middleIndex);
-       				if (countries[middleIndex].english == responseLine.country) {
+       			    	if (countries[middleIndex].english == responseLine.country) {
 					tdNew.textContent += '/' + countries[middleIndex].lithuanian;
 					break;
 				} else if (minIndex >= maxIndex) {
@@ -140,7 +142,42 @@ filterCountriesInput.addEventListener('input', function() {
 			tableLines[i].style.display = 'none';
 		}
 	}
+
+
+
 });
+
+       //history lithuanian
+console.log('aaaaa');
+       var data2 = null;
+
+var xhr2 = new XMLHttpRequest();
+xhr2.withCredentials = true;
+
+xhr2.addEventListener("readystatechange", function () {
+        if (this.readyState === this.DONE) {
+                console.log(this.responseText);
+                let historyLithuanian = JSON.parse(this.responseText).response;
+		
+		let historyLithuanianTag = document.getElementById('history-lithuanian');
+
+                for (let i = 0; i < historyLithuanian.length; i++) {
+     			if (i != 0 && historyLithuanian[i].day == historyLithuanian[i - 1].day) {
+				continue;
+     			}
+			let currentLine = historyLithuanian[i];
+                        historyLithuanianTag.textContent = historyLithuanianTag.textContent + 'data: ' + currentLine.day + '. Iš viso atvejų: ' + currentLine.cases.total + '\n';
+                }
+        }
+});
+
+xhr2.open("GET", "https://covid-193.p.rapidapi.com/history?country=lithuania");
+xhr2.setRequestHeader("x-rapidapi-host", "covid-193.p.rapidapi.com");
+xhr2.setRequestHeader("x-rapidapi-key", "116908dfb6msh3f97dbaf0aa4af8p1fcef7jsn502b466da50c");
+
+xhr2.send(data2);
+
+
 </script>
 
 <style>

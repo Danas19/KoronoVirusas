@@ -1,0 +1,24 @@
+<script>
+var data = null;
+
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+	if (this.readyState === this.DONE) {
+		console.log(this.responseText);
+		console.log(JSON.parse(this.responseText).response);
+		let historyLithuanian = JSON.parse(this.responseText).response;
+
+		for (let i = 0; i < historyLithuanian.length; i++) {
+			console.log(historyLithuanian[i].cases.active);
+		}
+	}
+});
+
+xhr.open("GET", "https://covid-193.p.rapidapi.com/history?country=lithuania");
+xhr.setRequestHeader("x-rapidapi-host", "covid-193.p.rapidapi.com");
+xhr.setRequestHeader("x-rapidapi-key", "116908dfb6msh3f97dbaf0aa4af8p1fcef7jsn502b466da50c");
+
+xhr.send(data);
+</script>
