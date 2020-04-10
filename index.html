@@ -70,6 +70,7 @@ xhr.addEventListener("readystatechange", function () {
    				writeHistory(responseLine.country);
    				window.location.href = '#history-lithuanian';
    			});
+			trNew.id = responseLine.country;
 
 			let tdNew = document.createElement('td');
 			let tdNew2 = document.createElement('td');
@@ -166,7 +167,11 @@ xhr2.addEventListener("readystatechange", function () {
                 let historyLithuanian = JSON.parse(this.responseText).response;
 		
 		let historyLithuanianTag = document.getElementById('history-lithuanian');
-		historyLithuanianTag.textContent = '                                 Istorija(' + country + ')\n';
+		historyLithuanianTag.textContent = '                                  Istorija(' + country + ')\n';
+		historyLithuanianTag.addEventListener('click', function() {
+			window.location.href = '#' + country;	
+		});
+		historyLithuanianTag.title = "Paspauskite čia, kad atsidurtumėt ties lentelė vieta, kurioje šalis yra: " + country + '.';
 
                 for (let i = 0; i < historyLithuanian.length; i++) {
      			//if (i != 0 && historyLithuanian[i].day == historyLithuanian[i - 1].day) {
@@ -239,6 +244,7 @@ h1, h2, h3, h4, h5, h6 {
 #history-lithuanian {
 	font-size: 2em;
 	background-color: rgb(255, 240, 240);
+	cursor: pointer;
 }
 
 tr:nth-child(2n) {
