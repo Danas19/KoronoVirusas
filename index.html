@@ -174,8 +174,8 @@ xhr2.addEventListener("readystatechange", function () {
      			//}
 			let currentLine = historyLithuanian[i];
                         historyLithuanianTag.textContent = historyLithuanianTag.textContent + changeCurrentLineTimeString(currentLine.time) + '. Iš viso atvejų: '
-				+ currentLine.cases.total + '. Mirčių: ' + currentLine.deaths.total + '. Atliktų testų: '
-					+ currentLine.tests.total + '\n';
+				+ currentLine.cases.total + '. Mirčių: ' + currentLine.deaths.total + (currentLine.tests.total != null ? ('. Atliktų testų: '
+					+ currentLine.tests.total) : '.') + '\n';
                 }
         }
 });
