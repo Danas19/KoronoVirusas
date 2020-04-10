@@ -173,7 +173,9 @@ xhr2.addEventListener("readystatechange", function () {
 			//	continue;
      			//}
 			let currentLine = historyLithuanian[i];
-                        historyLithuanianTag.textContent = historyLithuanianTag.textContent + 'data ir laikas: ' + changeCurrentLineTimeString(currentLine.time) + '. Iš viso atvejų: ' + currentLine.cases.total + '\n';
+                        historyLithuanianTag.textContent = historyLithuanianTag.textContent + changeCurrentLineTimeString(currentLine.time) + '. Iš viso atvejų: '
+				+ currentLine.cases.total + '. Mirčių: ' + currentLine.deaths.total + '. Atliktų testų: '
+					+ currentLine.tests.total + '\n';
                 }
         }
 });
