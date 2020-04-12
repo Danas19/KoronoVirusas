@@ -60,7 +60,7 @@ xhr.addEventListener("readystatechange", function () {
 
 		for (let i = 0; i < responseNormal.length; i++) {
 			let responseLine = responseNormal[i];
-       			if (responseLine.country.startsWith('-')) {
+       			if (responseLine.country.startsWith('-') || responseLine.country == 'Europe' || responseLine.country == 'North-America' || responseLine.country == 'Asia' || responseLine.country == 'Africa' || responseLine.country == 'South-America') {
        				//čia liktais žemynai prasideda -
        				continue;
        			}
@@ -248,7 +248,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 tr:nth-child(2n) {
-	background-color: silver;
+	background-color: rgb(242, 242, 242);
 }
 
 tr:first-child {
