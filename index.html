@@ -60,8 +60,8 @@ xhr.addEventListener("readystatechange", function () {
 
 		for (let i = 0; i < responseNormal.length; i++) {
 			let responseLine = responseNormal[i];
-       			if (responseLine.country.startsWith('-') || responseLine.country == 'Europe' || responseLine.country == 'North-America' || responseLine.country == 'Asia' || responseLine.country == 'Africa' || responseLine.country == 'South-America' || responseLine.country.endsWith('rincess-')) {
-       				//čia liktais žemynai prasideda -
+       			if (responseLine.country.startsWith('-') || responseLine.country == 'Europe' || responseLine.country == 'North-America' || responseLine.country == 'Asia' || responseLine.country == 'Africa' || responseLine.country == 'South-America' || responseLine.country.endsWith('rincess-') || responseLine.country.endsWith('-')) {
+       				//čia liktais žemynai prasideda
        				continue;
        			}
 
